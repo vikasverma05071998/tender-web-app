@@ -104,7 +104,7 @@
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
                         <a href="" class="btn btn-primary border-inner py-3 px-5 me-5">Read More</a>
                         <button type="button" class="btn-play" data-bs-toggle="modal"
-                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                            data-src="https://www.youtube.com/watch?v=xRFhBPxYJao" data-bs-target="#videoModal">
                             <span></span>
                         </button>
                         <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Play Video</h5>
@@ -127,8 +127,10 @@
                 <div class="modal-body">
                     <!-- 16:9 aspect ratio -->
                     <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                            allow="autoplay"></iframe>
+                        <!-- <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                             allow="autoplay"></iframe>  -->
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+
                     </div>
                 </div>
             </div>
@@ -278,11 +280,11 @@
                             <p>Service</p>
                             <form id="customerForm">
                                 <div class="input-group">
-                                    <input type="email" id="emailInput" class="form-control border-white p-3" placeholder="Your Email" required>
-                                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                                    <input type="email" id="email" class="form-control border-white p-3" placeholder="Email" required>
+                                    <button type="submit" class="btn btn-primary">SUBSCRIBE  US</button>
                                 </div>
                             </form>
-                            
+                            <div id="statusMessage"></div>
                         </div>
                     </div>
                 </div>

@@ -30,21 +30,22 @@
 
     // Modal Video
     $(document).ready(function () {
-        var $videoSrc;
+        var $videoSrc; // Define $videoSrc outside the click event handler
+    
         $('.btn-play').click(function () {
             $videoSrc = $(this).data("src");
+            console.log($videoSrc); // Log the video source when the button is clicked
         });
-        console.log($videoSrc);
-
+    
         $('#videoModal').on('shown.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
-        })
-
+        });
+    
         $('#videoModal').on('hide.bs.modal', function (e) {
-            $("#video").attr('src', $videoSrc);
-        })
+            $("#video").attr('src', ''); // Clear the src attribute to stop the video
+        });
     });
-
+    
 
     // Back to top button
     $(window).scroll(function () {
@@ -94,23 +95,45 @@
 })(jQuery);
 
 
-// Initialize EmailJS with your user ID
-emailjs.init("B63_zxmzYS-rCNjok"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
-
-// Handle form submission
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("customerForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent the default form submission
+    const customerForm = document.getElementById("customerForm");
+    const statusMessage = document.getElementById("statusMessage");
 
-        // Get the customer's email from the form
-        const customerEmail = document.getElementById("emailInput").value;
+    customerForm.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-        // Check if customerEmail is defined
-        if (customerEmail) {
-            // Send the email (your emailjs code goes here)
-            // ...
-        } else {
-            alert("Please enter a valid email address.");
-        }
+        // const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        // const message = document.getElementById("message").value;
+
+        const xhr = new XMLHttpRequest();
+        const url = "https://formspree.io/f/mnqkoyzd"; // Replace with your Formspree email address or use another email service.
+
+        xhr.open("POST", url);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+            debugger;
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    statusMessage.innerHTML = "Message sent successfully!";
+                    alert("Message sent successfully!")
+                    customerForm.reset();
+                } else {
+                    statusMessage.innerHTML = "Error sending message. Please try again later.";
+                }
+               setTimeout(()=>{
+                statusMessage.innerHTML = "";
+               },3000)
+            }
+        };
+
+        const data = {
+            // name: name,
+            email: email,
+            // message: message,
+        };
+
+        xhr.send(JSON.stringify(data));
     });
 });
